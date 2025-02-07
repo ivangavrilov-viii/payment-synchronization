@@ -38,36 +38,3 @@ if __name__ == "__main__":
         tb = traceback.format_exc()
         logger.logging(text=f"Synchronization of payments is FAILED. Error: {error}", log_type="critical")
         sys.exit(1)
-
-
-
-
-# if payment['source'] == 'tinkoff-pay':
-#     debug_log(f"INFO | This is tinkoff-pay payment", FILE_LOG)
-#     payment_status = get_payment_status(payment)
-#
-#     if payment_status[0]:
-#         debug_log(
-#             f"INFO | Payment's (id={payment['payment_id']}) status was changed to {payment_status}", FILE_LOG)
-#     else:
-#         debug_log(
-#             f"INFO | Payment status is {payment_status}", FILE_LOG)
-# elif payment['source'] == 'yookassa':
-#     debug_log(f"INFO | This is yookassa payment", FILE_LOG)
-#     payment_status = get_yookassa_payment_status(payment)
-#
-#     if payment_status[0]:
-#         debug_log(
-#             f"INFO | Payment's (id={payment['payment_id']}) status was changed to {payment_status}", FILE_LOG)
-#     else:
-#         debug_log(
-#             f"INFO | Payment status is {payment_status}", FILE_LOG)
-# elif payment['source'] == 'payselection':
-#     debug_log(f"INFO | This is payselection payment", FILE_LOG)
-#     payment_status = PaySelection.update_payment_status(payment)
-#     if payment_status[0]:
-#         debug_log(
-#             f"INFO | Payment's (id={payment['payment_id']}) status was changed to {payment_status}", FILE_LOG)
-#     else:
-#         debug_log(
-#             f"INFO | Payment status is {payment_status}", FILE_LOG)

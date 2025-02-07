@@ -46,6 +46,7 @@ def tbank_status(payment: dict) -> list:
                     notes = f"Смена статуса: {payment.get('state', None)} -> {payment_status}"
                     selector = [payment_id, payment_status, notes, settings.SERVICE_ID, settings.LANGUAGE]
                     print(selector)
+                    # INSERT FUNC TO SAVE IN DB
                 else:
                     logger.logging(text=f"Status for payment(#{payment_id}) has NOT changed\n", log_type="info")
             else:
