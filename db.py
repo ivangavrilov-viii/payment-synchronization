@@ -30,6 +30,18 @@ def get_data(db_function, selector_list):
         return list()
 
 
+def update_data(db_function, selector_list):
+    """ Request to UPDATE data in "try-except" construction """
+
+    try:
+        response = make_callproc(db_function, selector_list)
+        response = response[0][0] if response and response[0] else dict()
+        return response
+    except Exception as error:
+        logger.logging(text=f'Error with "{db_function}({selector_list})". Error: {error}', log_type='error')
+        return dict()
+
+
 def db_request(db_function_name, selector_list):
     cursor = CONNECTION.cursor()
     cursor.callproc(db_function_name, selector_list)
