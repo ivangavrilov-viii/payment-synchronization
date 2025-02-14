@@ -1,19 +1,15 @@
-from payment_systems import yookassa
-from payment_systems import tbank
-
-import traceback
-import settings
-import logger
-
-import sys
-import db
+from payment_systems.payselection import PaySelection
+from payment_systems import yookassa, tbank
+import traceback, sys, settings, logger, db
 
 
 if __name__ == "__main__":
     logger.logging(text="Start synchronization of payments", log_type='info')
 
     try:
-        payments = db.get_data(db_function=settings.GET_PAYMENTS, selector_list=[settings.LANGUAGE])
+        selector_list = ['flatinn', None, None, '2024-09-01', '2024-10-01', 'ru']
+        payments = db.get_data(db_function=settings.GET_PAYMENTS, selector_list=selector_list)
+        # payments = db.get_data(db_function=settings.GET_PAYMENTS, selector_list=[settings.LANGUAGE])
         logger.logging(text=f"Payments(len: {len(payments)}): {payments}\n", log_type='info')
 
         for payment in payments:
@@ -24,11 +20,13 @@ if __name__ == "__main__":
             logger.logging(text=f"Source for payment(#{payment_id}) is {source}", log_type='info')
 
             if source == 'tinkoff-pay':
-                payment_status = tbank.tbank_status(payment)
-            elif source == 'yookassa':
-                payment_status = yookassa.yookassa_status(payment)
-            elif source == 'payselection':
                 pass
+                # payment_status = tbank.tbank_status(payment)
+            elif source == 'yookassa':
+                pass
+                # payment_status = yookassa.yookassa_status(payment)
+            elif source == 'payselection':
+                payment_status = PaySelection.update_status(payment)
             elif source:
                 logger.logging(text=f"UNKNOWN SOURCE for payment", log_type='warning')
             else:
@@ -38,3 +36,6 @@ if __name__ == "__main__":
         tb = traceback.format_exc()
         logger.logging(text=f"Synchronization of payments is FAILED. Error: {error}", log_type="critical")
         sys.exit(1)
+
+
+# 'payments_control_json', [company, payment_type, state, start_date, end_date, language],

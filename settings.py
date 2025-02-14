@@ -18,6 +18,7 @@ else:
 
 LOGS_URL = 'logs'
 
+# DATABASE CONNECTION
 DB_NAME = config.get(CONFIG_DB, 'NAME')
 
 DB_USER = config.get(CONFIG_DB, 'USER')
@@ -28,44 +29,32 @@ DB_PORT = config.get(CONFIG_DB, 'PORT')
 
 DB_PASSWORD = config.get(CONFIG_DB, 'PASSWORD')
 
+
+# BASIC VARIABLES
 GET_PAYMENTS = config.get('variables', 'GET_PAYMENTS_FUNC')
 
 LANGUAGE = config.get('variables', 'LANGUAGE')
 
 SERVICE_ID = int(config.get('variables', 'SERVICE_ID'))
 
+
+# YOOKASSA kassa
 YOOKASSA_ACCOUNT_ID = config.get(CONFIG_KASSA, 'YOOKASSA_ACCOUNT_ID')
 
 YOOKASSA_SECRET_KEY = config.get(CONFIG_KASSA, 'YOOKASSA_SECRET_KEY')
 
-TINKOFF_TERMINAL_KEY = config.get(CONFIG_KASSA, 'TINKOFF_TERMINAL_KEY')
 
-TINKOFF_KASSA_URL = config.get(CONFIG_KASSA, 'TINKOFF_KASSA_URL')
+# T-BANK kassa
+TBANK_TERMINAL_KEY = config.get(CONFIG_KASSA, 'TBANK_TERMINAL_KEY')
 
-TINKOFF_PASSWORD = config.get(CONFIG_KASSA, 'TINKOFF_PASSWORD')
+TBANK_KASSA_URL = config.get(CONFIG_KASSA, 'TBANK_KASSA_URL')
+
+TBANK_PASSWORD = config.get(CONFIG_KASSA, 'TBANK_PASSWORD')
 
 
+# PAYSELECTIOM kassa
+PAYSELECTION_PRIVATE_KEY = config.get(CONFIG_KASSA, 'PAYSELECTION_PRIVATE_KEY')
 
+PAYSELECTION_SITE_ID = config.get(CONFIG_KASSA, 'PAYSELECTION_SITE_ID')
 
-# NAME_URLS = [
-#     "https://auth.flatinn.ru/static/names.txt",
-#     "https://guests.flatinn.ru/static/general/names.txt"
-# ]
-#
-# START_LANG = config.get('variables', 'START_LANG')
-#
-# END_LANG = config.get('variables', 'END_LANG')
-#
-# END_LANGS = [
-#     'fr',
-#     'sr',
-#     'ar',
-#     'az',
-#     'ka'
-# ]
-#
-# GET_NAMES = config.get('variables', 'GET_NAMES_FUNC')
-#
-# UPDATE_NAMES = config.get('variables', 'UPDATE_NAMES_FUNC')
-#
-# USER_ID = int(config.get('variables', 'DB_USER_ID'))
+GW_API_URL = config.get(CONFIG_KASSA, 'GW_API_URL')
