@@ -7,9 +7,9 @@ if __name__ == "__main__":
     logger.logging(text="Start synchronization of payments", log_type='info')
 
     try:
-        selector_list = ['flatinn', None, None, '2024-09-01', '2024-10-01', 'ru']
-        payments = db.get_data(db_function=settings.GET_PAYMENTS, selector_list=selector_list)
-        # payments = db.get_data(db_function=settings.GET_PAYMENTS, selector_list=[settings.LANGUAGE])
+        # selector_list = ['flatinn', None, None, '2024-09-01', '2024-10-01', 'ru']
+        # payments = db.get_data(db_function=settings.GET_PAYMENTS, selector_list=selector_list)
+        payments = db.get_data(db_function=settings.GET_PAYMENTS, selector_list=[settings.LANGUAGE])
         logger.logging(text=f"Payments(len: {len(payments)}): {payments}\n", log_type='info')
 
         for payment in payments:
@@ -36,6 +36,3 @@ if __name__ == "__main__":
         tb = traceback.format_exc()
         logger.logging(text=f"Synchronization of payments is FAILED. Error: {error}", log_type="critical")
         sys.exit(1)
-
-
-# 'payments_control_json', [company, payment_type, state, start_date, end_date, language],

@@ -1,3 +1,4 @@
+from payment_systems import flatinn
 import settings, logger, db
 import requests
 import hashlib
