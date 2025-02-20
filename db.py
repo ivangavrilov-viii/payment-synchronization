@@ -56,7 +56,7 @@ def make_callproc(db_function_name, selector_list):
     try:
         return db_request(db_function_name, selector_list)
     except psycopg2.errors.ConnectionException as error:
-        logger.logging(text=f'Error with "{cursor.query}". Error with connection: {error}', log_type='warning')
+        logger.logging(text=f'Error with "{CONNECTION.cursor().query}". Error with connection: {error}', log_type='warning')
         stop_db_connection()
 
         while True:
@@ -68,7 +68,7 @@ def make_callproc(db_function_name, selector_list):
             except psycopg2.Error as error:
                 logger.logging(text=f'Error with reconnect: {error}', log_type='critical')
     except psycopg2.DatabaseError as error:
-        logger.logging(text=f'Error with "{cursor.query}". Error: {error}', log_type='warning')
+        logger.logging(text=f'Error with "{CONNECTION.cursor().query}". Error: {error}', log_type='warning')
         stop_db_connection()
 
         while True:
