@@ -7,9 +7,9 @@ if __name__ == "__main__":
     logger.logging(text="Start synchronization of payments", log_type='info')
 
     try:
-        # selector_list = ['flatinn', None, None, '2024-09-01', '2024-10-01', 'ru']
-        # payments = db.get_data(db_function=settings.GET_PAYMENTS, selector_list=selector_list)
-        payments = db.get_data(db_function=settings.GET_PAYMENTS, selector_list=[settings.LANGUAGE])
+        selector_list = ['flatinn', None, None, '2025-01-01', '2025-12-01', settings.LANGUAGE]
+        payments = db.get_data(db_function=settings.GET_PAYMENTS, selector_list=selector_list)
+        # payments = db.get_data(db_function=settings.GET_PAYMENTS, selector_list=[settings.LANGUAGE])
         logger.logging(text=f"Payments(len: {len(payments)}): {payments}\n", log_type='info')
 
         for payment in payments:
@@ -20,13 +20,13 @@ if __name__ == "__main__":
             logger.logging(text=f"Source for payment(#{payment_id}) is {source}", log_type='info')
 
             if source == 'tinkoff-pay':
-                pass
-                # payment_status = tbank.tbank_status(payment)
+                payment_status = tbank.tbank_status(payment)
             elif source == 'yookassa':
                 pass
                 # payment_status = yookassa.yookassa_status(payment)
             elif source == 'payselection':
-                payment_status = PaySelection.update_status(payment)
+                pass
+                # payment_status = PaySelection.update_status(payment)
             elif source:
                 logger.logging(text=f"UNKNOWN SOURCE for payment", log_type='warning')
             else:
