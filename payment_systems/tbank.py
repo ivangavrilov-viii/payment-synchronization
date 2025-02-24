@@ -8,6 +8,7 @@ import json
 def tbank_status(payment: dict) -> list:
     """ GET T-BANK payment STATUS """
 
+    # transaction_id = payment.get('transaction', None)
     transaction_id = payment.get('transaction_id', None)
     payment_id = payment.get('payment_id', None)
     logger.logging(text=f"T-BANK payment(#{payment_id}) with transaction: {transaction_id}", log_type="info")

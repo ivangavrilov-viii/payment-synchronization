@@ -6,7 +6,8 @@ import settings, logger, db
 def yookassa_status(payment: dict) -> list:
     """ GET YOOKASSA payment STATUS """
 
-    transaction_id = payment.get('transaction', None)
+    # transaction_id = payment.get('transaction', None)
+    transaction_id = payment.get('transaction_id', None)
     payment_id = payment.get('payment_id', None)
     logger.logging(text=f"Yookassa payment(#{payment_id}) with transaction: {transaction_id}", log_type="info")
 

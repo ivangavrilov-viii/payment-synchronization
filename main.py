@@ -9,7 +9,9 @@ if __name__ == "__main__":
     try:
         selector_list = ['flatinn', None, None, '2025-01-01', '2025-12-01', settings.LANGUAGE]
         payments = db.get_data(db_function=settings.GET_PAYMENTS, selector_list=selector_list)
+
         # payments = db.get_data(db_function=settings.GET_PAYMENTS, selector_list=[settings.LANGUAGE])
+
         logger.logging(text=f"Payments(len: {len(payments)}): {payments}\n", log_type='info')
 
         for payment in payments:
@@ -22,8 +24,7 @@ if __name__ == "__main__":
             if source == 'tinkoff-pay':
                 payment_status = tbank.tbank_status(payment)
             elif source == 'yookassa':
-                pass
-                # payment_status = yookassa.yookassa_status(payment)
+                payment_status = yookassa.yookassa_status(payment)
             elif source == 'payselection':
                 pass
                 # payment_status = PaySelection.update_status(payment)
